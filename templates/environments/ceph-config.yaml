@@ -1,0 +1,10 @@
+parameter_defaults:
+  CephPoolDefaultSize: 3
+  CephPoolDefaultPgNum: 128
+  CephConfigOverrides:
+    mon_max_pg_per_osd: 3072
+  CephAnsibleDisksConfig:
+    osd_scenario: collocated
+    devices:
+      - /dev/vdb
+      - /dev/vdc

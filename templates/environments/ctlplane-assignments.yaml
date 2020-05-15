@@ -1,0 +1,35 @@
+resource_registry:
+  OS::TripleO::DeployedServer::ControlPlanePort: /home/stack/output/deployed-server/deployed-neutron-port.yaml
+
+parameter_defaults:
+  DeployedServerPortMap:
+    ctrl01-ctlplane:
+      fixed_ips:
+        - ip_address: 192.0.2.160
+      subnets:
+        - cidr: 192.0.2.0/24
+    compute01-ctlplane:
+      fixed_ips:
+        - ip_address: 192.0.2.161
+      subnets:
+        - cidr: 192.0.2.0/24
+    compute02-ctlplane:
+      fixed_ips:
+        - ip_address: 192.0.2.162
+      subnets:
+        - cidr: 192.0.2.0/24
+    ceph01-ctlplane:
+      fixed_ips:
+        - ip_address: 192.0.2.171
+      subnets:
+        - cidr: 192.0.2.0/24
+    ceph02-ctlplane:
+      fixed_ips:
+        - ip_address: 192.0.2.172
+      subnets:
+        - cidr: 192.0.2.0/24
+    ceph03-ctlplane:
+      fixed_ips:
+        - ip_address: 192.0.2.173
+      subnets:
+        - cidr: 192.0.2.0/24

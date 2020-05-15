@@ -1,0 +1,23 @@
+resource_registry:
+  OS::TripleO::Server: ../deployed-server/deployed-server.yaml
+  OS::TripleO::DeployedServer::ControlPlanePort: OS::Neutron::Port
+  OS::TripleO::DeployedServer::Bootstrap: OS::Heat::None
+
+
+  # Default nic config mappings
+  OS::TripleO::ControllerDeployedServer::Net::SoftwareConfig: ../net-config-static.yaml
+
+  # Default nic config mappings
+  OS::TripleO::ComputeDeployedServer::Net::SoftwareConfig: ../net-config-static.yaml
+
+  # Default nic config mappings
+  OS::TripleO::BlockStorageDeployedServer::Net::SoftwareConfig: ../net-config-static.yaml
+
+  # Default nic config mappings
+  OS::TripleO::ObjectStorageDeployedServer::Net::SoftwareConfig: ../net-config-static.yaml
+
+  # Default nic config mappings
+  OS::TripleO::CephStorageDeployedServer::Net::SoftwareConfig: ../net-config-static.yaml
+
+
+  OS::TripleO::ControllerDeployedServer::Net::SoftwareConfig: ../net-config-static-bridge.yaml

@@ -1,0 +1,66 @@
+# ******************************************************************************
+# DEPRECATED: Modify networks used for custom roles by modifying the role file
+# in the roles/ directory, or disable the network entirely by setting network to
+# "enabled: false" in network_data.yaml.
+# ******************************************************************************
+# Enable the creation of Neutron networks for isolated Overcloud
+# traffic and configure each role to assign ports (related
+# to that role) on these networks. This version of the environment
+# has no dedicated VLAN for tunneling, for deployments that use
+# VLAN mode, flat provider networks, etc.
+resource_registry:
+  # networks as defined in network_data.yaml, except for tenant net
+  OS::TripleO::Network::Storage: ../network/storage.yaml
+  OS::TripleO::Network::StorageMgmt: ../network/storage_mgmt.yaml
+  OS::TripleO::Network::InternalApi: ../network/internal_api.yaml
+  OS::TripleO::Network::External: ../network/external.yaml
+  OS::TripleO::Network::Management: ../network/management.yaml
+  OS::TripleO::Network::Tenant: OS::Heat::None
+
+  # Port assignments for the VIPs
+  OS::TripleO::Network::Ports::StorageVipPort: ../network/ports/storage.yaml
+  OS::TripleO::Network::Ports::StorageMgmtVipPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::Network::Ports::InternalApiVipPort: ../network/ports/internal_api.yaml
+  OS::TripleO::Network::Ports::ExternalVipPort: ../network/ports/external.yaml
+  OS::TripleO::Network::Ports::RedisVipPort: ../network/ports/vip.yaml
+
+  # Port assignments for each role are determined by the role definition.
+  # Port assignments for the ControllerDeployedServer role.
+  OS::TripleO::ControllerDeployedServer::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::ControllerDeployedServer::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::ControllerDeployedServer::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::ControllerDeployedServer::Ports::TenantPort: ../network/ports/noop.yaml
+  OS::TripleO::ControllerDeployedServer::Ports::ExternalPort: ../network/ports/external.yaml
+  OS::TripleO::ControllerDeployedServer::Ports::ManagementPort: ../network/ports/noop.yaml
+
+  # Port assignments for the ComputeDeployedServer role.
+  OS::TripleO::ComputeDeployedServer::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::ComputeDeployedServer::Ports::StorageMgmtPort: ../network/ports/noop.yaml
+  OS::TripleO::ComputeDeployedServer::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::ComputeDeployedServer::Ports::TenantPort: ../network/ports/noop.yaml
+  OS::TripleO::ComputeDeployedServer::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::ComputeDeployedServer::Ports::ManagementPort: ../network/ports/noop.yaml
+
+  # Port assignments for the BlockStorageDeployedServer role.
+  OS::TripleO::BlockStorageDeployedServer::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::BlockStorageDeployedServer::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::BlockStorageDeployedServer::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::BlockStorageDeployedServer::Ports::TenantPort: ../network/ports/noop.yaml
+  OS::TripleO::BlockStorageDeployedServer::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::BlockStorageDeployedServer::Ports::ManagementPort: ../network/ports/noop.yaml
+
+  # Port assignments for the ObjectStorageDeployedServer role.
+  OS::TripleO::ObjectStorageDeployedServer::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::ObjectStorageDeployedServer::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::ObjectStorageDeployedServer::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::ObjectStorageDeployedServer::Ports::TenantPort: ../network/ports/noop.yaml
+  OS::TripleO::ObjectStorageDeployedServer::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::ObjectStorageDeployedServer::Ports::ManagementPort: ../network/ports/noop.yaml
+
+  # Port assignments for the CephStorageDeployedServer role.
+  OS::TripleO::CephStorageDeployedServer::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::CephStorageDeployedServer::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::CephStorageDeployedServer::Ports::InternalApiPort: ../network/ports/noop.yaml
+  OS::TripleO::CephStorageDeployedServer::Ports::TenantPort: ../network/ports/noop.yaml
+  OS::TripleO::CephStorageDeployedServer::Ports::ExternalPort: ../network/ports/noop.yaml
+  OS::TripleO::CephStorageDeployedServer::Ports::ManagementPort: ../network/ports/noop.yaml

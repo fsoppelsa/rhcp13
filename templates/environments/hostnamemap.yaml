@@ -1,0 +1,8 @@
+parameter_defaults:
+  HostnameMap:
+    overcloud-controllerdeployedserver-0: ctrl01
+    overcloud-computedeployedserver-0: compute01
+    overcloud-computedeployedserver-1: compute02
+    overcloud-cephstoragedeployedserver-0: ceph01
+    overcloud-cephstoragedeployedserver-1: ceph02
+    overcloud-cephstoragedeployedserver-2: ceph03

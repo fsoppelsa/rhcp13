@@ -1,0 +1,46 @@
+# Enable the creation of Neutron networks for isolated Overcloud
+# traffic and configure each role to assign ports (related
+# to that role) on these networks.
+# primary role is: ControllerDeployedServer
+resource_registry:
+  # networks as defined in network_data.yaml
+  OS::TripleO::Network::Storage: ../network/storage.yaml
+  OS::TripleO::Network::StorageMgmt: ../network/storage_mgmt.yaml
+  OS::TripleO::Network::InternalApi: ../network/internal_api.yaml
+  OS::TripleO::Network::Tenant: ../network/tenant.yaml
+  OS::TripleO::Network::External: ../network/external.yaml
+  OS::TripleO::Network::Management: ../network/management.yaml
+
+  # Port assignments for the VIPs
+  OS::TripleO::Network::Ports::StorageVipPort: ../network/ports/storage.yaml
+  OS::TripleO::Network::Ports::StorageMgmtVipPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::Network::Ports::InternalApiVipPort: ../network/ports/internal_api.yaml
+  OS::TripleO::Network::Ports::ExternalVipPort: ../network/ports/external.yaml
+  OS::TripleO::Network::Ports::RedisVipPort: ../network/ports/vip.yaml
+
+  # Port assignments by role, edit role definition to assign networks to roles.
+  # Port assignments for the ControllerDeployedServer
+  OS::TripleO::ControllerDeployedServer::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::ControllerDeployedServer::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::ControllerDeployedServer::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::ControllerDeployedServer::Ports::TenantPort: ../network/ports/tenant.yaml
+  OS::TripleO::ControllerDeployedServer::Ports::ExternalPort: ../network/ports/external.yaml
+
+  # Port assignments for the ComputeDeployedServer
+  OS::TripleO::ComputeDeployedServer::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::ComputeDeployedServer::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+  OS::TripleO::ComputeDeployedServer::Ports::TenantPort: ../network/ports/tenant.yaml
+
+  # Port assignments for the BlockStorageDeployedServer
+  OS::TripleO::BlockStorageDeployedServer::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::BlockStorageDeployedServer::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::BlockStorageDeployedServer::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+
+  # Port assignments for the ObjectStorageDeployedServer
+  OS::TripleO::ObjectStorageDeployedServer::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::ObjectStorageDeployedServer::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml
+  OS::TripleO::ObjectStorageDeployedServer::Ports::InternalApiPort: ../network/ports/internal_api.yaml
+
+  # Port assignments for the CephStorageDeployedServer
+  OS::TripleO::CephStorageDeployedServer::Ports::StoragePort: ../network/ports/storage.yaml
+  OS::TripleO::CephStorageDeployedServer::Ports::StorageMgmtPort: ../network/ports/storage_mgmt.yaml

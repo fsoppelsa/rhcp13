@@ -1,0 +1,5 @@
+parameter_defaults:
+  ControllerDeployedServerCount: 1
+  ComputeDeployedServerCount: 2
+  NovaReservedHostMemory: 1024
+  CephStorageDeployedServerCount: 3

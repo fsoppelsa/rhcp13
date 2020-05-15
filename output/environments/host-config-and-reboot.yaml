@@ -1,0 +1,26 @@
+resource_registry:
+
+  OS::TripleO::ControllerDeployedServer::PreNetworkConfig: ../extraconfig/pre_network/host_config_and_reboot.yaml
+
+  OS::TripleO::ComputeDeployedServer::PreNetworkConfig: ../extraconfig/pre_network/host_config_and_reboot.yaml
+
+  OS::TripleO::BlockStorageDeployedServer::PreNetworkConfig: ../extraconfig/pre_network/host_config_and_reboot.yaml
+
+  OS::TripleO::ObjectStorageDeployedServer::PreNetworkConfig: ../extraconfig/pre_network/host_config_and_reboot.yaml
+
+  OS::TripleO::CephStorageDeployedServer::PreNetworkConfig: ../extraconfig/pre_network/host_config_and_reboot.yaml
+
+
+#parameter_defaults:
+  # Note: There are no global parameters which can be applied to all roles as
+  # these configuration have to be specific to role.
+
+  # Sample parameters for Compute and ComputeOvsDpdk roles
+  #ComputeParameters:
+    #KernelArgs: ""
+    #TunedProfileName: ""
+    #IsolCpusList: ""
+  #ComputeOvsDpdkParameters:
+    #KernelArgs: "intel_iommu=on iommu=pt default_hugepagesz=1GB hugepagesz=1G hugepages=60"
+    #TunedProfileName: "cpu-partitioning"
+    #IsolCpusList: ""
